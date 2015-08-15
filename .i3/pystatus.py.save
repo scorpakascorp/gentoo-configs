@@ -1,0 +1,72 @@
+from i3pystatus import Status
+
+status = Status(standalone=True)
+
+status.register("uname",
+    hints = {"markup": "pango"},
+    format = "<span color=\"#757575\">{release}</span>",)
+
+status.register("clock",
+    hints = {"markup": "pango"},
+    format="<span color=\"#90D4A1\">\U0001F551 %H:%M</span>",)
+
+status.register("clock",
+    hints = {"markup": "pango"},
+    format="<span color=\"#90C3D4\">\U0001F4C6 %a %d %b</span>",)
+
+status.register("weather",
+    units="metric",
+    location_code="UPXX0049",
+#    on_leftclick = ["exec surf 'http://goo.gl/c4GYjL'"],
+#    colorize=True,
+    hints = {"markup": "pango"},
+
+    format="<span color=\"#C489BB\">\U0001F321{current_temp} \U0001F322{humidity}% \U0001F32B{current_wind}</span>",)
+
+#status.register("runwatch",
+#    name="DHCP",
+#    path="/var/run/dhclient*.pid",)
+
+status.register("network",
+    interface="eth0",
+    format_up="\U0001F5A7 {v4cidr}",
+    format_down = "",)
+
+status.register("network",
+    interface = "eth0",
+    hints = {"markup": "pango"},
+    format_up = "\U0001F80B{bytes_recv:6.0f}KiB \U0001F809{bytes_sent:5.0f}KiB",
+    format_down = "",
+    dynamic_color = True,
+    start_color = "#00FF00",
+    end_color = "#FF0000",
+    color_down = "#FF0000",
+    upper_limit = 800.0,
+    )
+
+#status.register("cpu_usage_bar",
+#     format="\U0001F4BB {usage_bar}",)
+
+status.register("cpu_usage_graph",
+    graph_width = 6,
+    format = "\U0001F4BB{cpu_graph}",)
+
+status.register("mem_bar",
+     format="\u2263 {used_mem_bar}",)
+
+status.register("pulseaudio",
+    hints = {"markup": "pango"},
+#    format="<span color=\"#BFA571\">\U0001F509 {volume}</span>",)
+    format="<span font_family=\"icon\" color=\"#BFA571\" size='12800'>\uE805</span>  {volume}",)
+
+status.register("mpd",
+    hints = {"markup": "pango"},
+    format="<span color=\"#757575\">{status} {title}\[{song_elapsed}/{song_length}\]</span>",
+    max_field_len=55,
+    status={
+        "pause": "▷",
+        "play": "▶",
+        "stop": "◾",
+    },)
+
+status.run()
