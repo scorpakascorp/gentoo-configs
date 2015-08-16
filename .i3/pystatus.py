@@ -37,7 +37,7 @@ status.register("weather",
 status.register("network",
     interface="eth0",
     hints   = {"markup": "pango"},
-    format_up ="<span font_family='icon' color='#BFA571' size='12800'>\U0001F5A7</span>"+\
+    format_up ="<span font_family='icon' color='#BFA571' size='12800'>\uE80E</span>"+\
                "<span color='#808080'> {v4cidr}</span>",
     format_down = "",)
 
